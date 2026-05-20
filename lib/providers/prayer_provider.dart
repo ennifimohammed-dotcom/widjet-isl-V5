@@ -32,7 +32,8 @@ class PrayerProvider extends ChangeNotifier {
   String? get error => _error;
   double? get latitude => _latitude;
   double? get longitude => _longitude;
-  double get qiblaDirection => _coordinates != null ? Qibla.qibla(_coordinates!) : 0.0;
+  double get qiblaDirection =>
+      _coordinates != null ? Qibla.qibla(_coordinates!) : 0.0;
 
   static const Map<String, String> prayerNamesFr = {
     'fajr': 'Fajr',
@@ -91,7 +92,6 @@ class PrayerProvider extends ChangeNotifier {
       _longitude = position.longitude;
       await _reverseGeocode(position.latitude, position.longitude);
       await _calculatePrayerTimes();
-
     } catch (e) {
       _setDefaultLocation();
     }
@@ -130,18 +130,16 @@ class PrayerProvider extends ChangeNotifier {
     try {
       _coordinates = Coordinates(_latitude!, _longitude!);
 
-      final params = CalculationMethod.MuslimWorldLeague.getParameters();
-      params.madhab = Madhab.Shafi;
+      // Utiliser le constructeur, pas la constante enum
+      final params = CalculationMethod.MuslimWorldLeague();
+      params.madhab = Madhab.Hanafi;
 
-      final dateComponents = DateComponents(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
-      );
+      final now = DateTime.now();
+      final date = DateComponents(now.year, now.month, now.day);
 
       _prayerTimes = PrayerTimes(
         coordinates: _coordinates!,
-        date: dateComponents,
+        date: date,
         calculationParameters: params,
       );
 
@@ -154,7 +152,7 @@ class PrayerProvider extends ChangeNotifier {
       _error = null;
       notifyListeners();
     } catch (e) {
-      _error = 'Erreur: ${e.toString()}';
+      _error = 'Erreur: $e';
       _isLoading = false;
       notifyListeners();
     }
@@ -164,11 +162,9 @@ class PrayerProvider extends ChangeNotifier {
     if (_prayerTimes == null) return;
 
     final now = DateTime.now();
-    _currentPrayer = _prayerTimes!.currentPrayer(date: now).name;
-    _nextPrayer = _prayerTimes!.nextPrayer(date: now)?.name ?? 'fajr';
-    _nextPrayerTime = _prayerTimes!.timeForPrayer(
-      _prayerTimes!.nextPrayer(date: now) ?? Prayer.fajr,
-    );
+    _currentPrayer = _prayerTimes!.currentPrayer(date: now);
+    _nextPrayer = _prayerTimes!.nextPrayer(date: now);
+    _nextPrayerTime = _prayerTimes!.timeForPrayer(_nextPrayer);
   }
 
   Map<String, DateTime> getPrayerTimesMap() {
@@ -196,7 +192,7 @@ class PrayerProvider extends ChangeNotifier {
     final minutes = remaining.inMinutes % 60;
 
     if (hours > 0) return '${hours}h ${minutes}min';
-    return '${minutes} min';
+    return '$minutes min';
   }
 
   Future<void> _scheduleNotifications() async {
