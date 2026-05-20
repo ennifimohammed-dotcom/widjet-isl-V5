@@ -1,5 +1,5 @@
 name: islamic_widgets
-description: Une application mobile complete de widgets islamiques - Heures de priere, Adhkar, Qibla, Calendrier Hijri
+description: Une application mobile complète de widgets islamiques - Heures de prière, Adhkar, Qibla, Calendrier Hijri
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -10,30 +10,40 @@ dependencies:
   flutter:
     sdk: flutter
   
+  # 🌙 Core Islamic
   adhan_dart: ^1.0.2
   hijri: ^3.0.0
   
+  # 📍 Location
   geolocator: ^10.1.0
   geocoding: ^2.1.1
   flutter_compass: ^0.8.1
   
+  # 🔔 Notifications
   awesome_notifications: ^0.8.2
   
+  # 🧠 State
   provider: ^6.1.1
   
+  # 💾 Storage
   shared_preferences: ^2.2.2
   
+  # 🎨 UI
   google_fonts: ^6.1.0
   shimmer: ^3.0.0
   liquid_progress_indicator: ^0.4.0
   smooth_page_indicator: ^1.1.0
   
+  # 📅 Date
   intl: ^0.18.1
   
+  # 🌐 Network
   http: ^1.1.2
   
+  # 🔊 Audio
   audioplayers: ^5.2.1
   
+  # 📱 Utils
   url_launcher: ^6.2.2
   package_info_plus: ^5.0.1
   device_info_plus: ^9.1.1
