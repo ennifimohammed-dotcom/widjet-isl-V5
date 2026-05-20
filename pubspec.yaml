@@ -1,0 +1,76 @@
+name: islamic_widgets
+description: Une application mobile complète de widgets islamiques - Heures de prière, Adhkar, Qibla, Calendrier Hijri
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # 🌙 Core Islamic packages
+  adhan_dart: ^1.2.0          # Calcul des heures de prière (Adhan & Qibla intégrés)
+  hijri: ^3.0.0               # Calendrier Hijri
+  
+  # 📍 Location
+  geolocator: ^14.0.2         # Détection de localisation GPS
+  geocoding: ^4.0.0           # Géocodage (adresse → coordonnées)
+  flutter_compass_v2: ^1.0.3  # Boussole (utilisé par flutter_qiblah)
+
+  # 🧭 Qibla  
+  flutter_qiblah: ^3.2.0      # Direction de la Qibla avec boussole
+  
+  # 🔔 Notifications
+  awesome_notifications: ^0.10.1  # Notifications locales pour les prières
+  
+  # 🧠 State Management
+  provider: ^6.1.2            # Gestion d'état simple et efficace
+  
+  # 💾 Stockage local
+  shared_preferences: ^2.3.4  # Sauvegarde des préférences utilisateur
+  
+  # 🎨 UI & Design
+  google_fonts: ^6.2.1        # Polices modernes (Amiri, Cairo)
+  flutter_svg: ^2.0.9         # Icônes SVG
+  shimmer: ^3.0.0             # Effet de chargement élégant
+  liquid_progress_indicator: ^0.4.0  # Indicateur de progression pour compteur tasbih
+  smooth_page_indicator: ^1.2.1      # Indicateur de page
+  
+  # 📅 Date & Time
+  intl: ^0.20.2               # Formatage des dates
+  
+  # 🌐 Networking
+  http: ^1.6.0                # Requêtes HTTP (API Aladhan fallback)
+  
+  # 🔊 Audio
+  audioplayers: ^6.1.0        # Lecture de l'adhan (optionnel)
+  
+  # 📱 Utilitaires
+  url_launcher: ^6.3.1        # Ouverture de liens externes
+  package_info_plus: ^8.3.1   # Info du package
+  device_info_plus: ^11.3.3   # Info de l'appareil
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1       # Linting Flutter
+  flutter_launcher_icons: ^0.13.1  # Génération d'icônes de lancement
+
+# flutter_launcher_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/icons/app_icon.png"
+#   adaptive_icon_background: "#1B5E20"
+#   adaptive_icon_foreground: "assets/icons/app_icon_foreground.png"
+
+flutter:
+  uses-material-design: true
+  
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
+  #   - assets/fonts/
+  #   - assets/audio/
+  #   - assets/data/
