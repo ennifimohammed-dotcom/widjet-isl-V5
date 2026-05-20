@@ -130,16 +130,15 @@ class PrayerProvider extends ChangeNotifier {
     try {
       _coordinates = Coordinates(_latitude!, _longitude!);
 
-      // Utiliser le constructeur, pas la constante enum
-      final params = CalculationMethod.MuslimWorldLeague();
-      params.madhab = Madhab.Hanafi;
+      // Paramètres de calcul
+      final params = CalculationMethod.muslim_world_league.getParameters();
+      params.madhab = Madhab.hanafi;
 
       final now = DateTime.now();
-      final date = DateComponents(now.year, now.month, now.day);
 
       _prayerTimes = PrayerTimes(
         coordinates: _coordinates!,
-        date: date,
+        date: now,
         calculationParameters: params,
       );
 
@@ -165,6 +164,7 @@ class PrayerProvider extends ChangeNotifier {
     _currentPrayer = _prayerTimes!.currentPrayer(date: now);
     _nextPrayer = _prayerTimes!.nextPrayer(date: now);
     _nextPrayerTime = _prayerTimes!.timeForPrayer(_nextPrayer);
+
   }
 
   Map<String, DateTime> getPrayerTimesMap() {
