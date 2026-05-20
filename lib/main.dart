@@ -4,7 +4,6 @@ import 'providers/prayer_provider.dart';
 import 'providers/settings_provider.dart';
 import 'providers/adhkar_provider.dart';
 import 'providers/hijri_provider.dart';
-import 'screens/home_screen.dart';
 import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 
